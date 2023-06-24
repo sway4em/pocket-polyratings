@@ -1,0 +1,20 @@
+{
+  "name": "Polyratings Mini",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "polyratings.png"
+  },
+  "permissions": [
+    "activeTab", 
+    "tabs"
+  ],
+  "content_scripts": [  
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["script.js"]
+    }
+  ]
+}
