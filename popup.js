@@ -13,6 +13,7 @@ document.getElementById('run-script').addEventListener('click', () => {
                         acc[item.name] = item.rating;
                         return acc;
                     }, {});
+                    
                     // Access the iframe
                     let iframe = document.querySelector('iframe');
                     const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;

@@ -1,8 +1,10 @@
 {
   "manifest_version": 2,
   "name": "Polyratings Mini",
-  "version": "1",
-  "icon": "polyratings.png",
+  "version": "1.0",
+  "icons": {
+    "128": "polyratings.png"
+  },
   "permissions": [
     "activeTab",
     "https://api.jsonbin.io/"
