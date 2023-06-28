@@ -1,19 +1,20 @@
-.title{
+.title {
   text-align: center;
   color: #c69214;
 }
 
-.search-bar{
+.search-bar {
   border-radius: 10px;
 }
 
-.search-wrapper{
+.search-wrapper {
   padding-top: 10px;
   padding-left: 27%;
 }
 
-button{
-  
+button {
+  display: block;
+  margin: 10px auto;
 }
 
 body {
@@ -22,10 +23,11 @@ body {
   padding: 10px;
 }
 
-html
-{
-    width: 300px; /* max: 1000px */
-    height: 200px; /* max: 750px */
+html {
+  width: 300px;
+  /* max: 1000px */
+  height: 200px;
+  /* max: 750px */
 }
 
 
