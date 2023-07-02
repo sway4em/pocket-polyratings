@@ -23,6 +23,9 @@ function runScript() {
                     let iframe = document.querySelector('iframe');
                     const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
                     const divs = iframeDocument.querySelectorAll(".cx-MuiTypography-root.cx-MuiTypography-body2.cx-MuiTypography-noWrap");
+                    const pElements = iframeDocument.querySelectorAll('.cx-MuiTypography-root.cx-MuiTypography-h4.cx-MuiTypography-colorTextSecondary');
+                    const class_name_element = iframeDocument.querySelector('.cx-MuiTypography-root.d-flex.align-items-center.cx-MuiTypography-h2');
+                    const class_name = class_name_element.childNodes[0].nodeValue.split('-')[0].trim();
 
                     for (let i = 0; i < divs.length; i += 5) {
                         if (divs[i].getAttribute("role") === "cell") {
@@ -32,6 +35,7 @@ function runScript() {
                                 // Check if nextDiv already contains the green text
                                 if (!nextDiv.querySelector('span[style*="darkgreen"]')) {
                                     console.log(cellText);
+                                    console.log(class_name);
                                     const ratingSpan = document.createElement('span');
                                     let rating = ${JSON.stringify(ratings)}[cellText];
                                     if (rating === undefined) {
@@ -46,6 +50,29 @@ function runScript() {
                                     ratingSpan.style.fontSize = 'larger';
                                     nextDiv.insertBefore(ratingSpan, nextDiv.firstChild);
                                     nextDiv.insertBefore(document.createTextNode(' '), nextDiv.firstChild);
+
+                                    // Create a tooltip element
+                                    const tooltipElement = document.createElement('div');
+                                    tooltipElement.textContent = \`Rating: \${rating !== undefined ? rating : 'N/A'} | Class name: \${class_name}\`;
+                                    tooltipElement.style.position = 'absolute';
+                                    tooltipElement.style.zIndex = 1000;
+                                    tooltipElement.style.backgroundColor = 'white';
+                                    tooltipElement.style.borderRadius = '3px';
+                                    tooltipElement.style.padding = '5px';
+                                    tooltipElement.style.display = 'none';
+
+                                    // Append the tooltip element to the body
+                                    document.body.appendChild(tooltipElement);
+
+                                    // Add event listeners to show/hide the tooltip on hover
+                                    ratingSpan.addEventListener('mouseover', function(event) {
+                                        tooltipElement.style.display = 'block';
+                                        tooltipElement.style.left = event.clientX + 'px';
+                                        tooltipElement.style.top = event.clientY + 'px';
+                                    });
+                                    ratingSpan.addEventListener('mouseout', function() {
+                                        tooltipElement.style.display = 'none';
+                                    });
                                 }
                             }
                         }
