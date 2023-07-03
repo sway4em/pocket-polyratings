@@ -51,27 +51,27 @@ function runScript() {
                                     nextDiv.insertBefore(ratingSpan, nextDiv.firstChild);
                                     nextDiv.insertBefore(document.createTextNode(' '), nextDiv.firstChild);
 
-                                    // Create a tooltip element
-                                    const tooltipElement = document.createElement('div');
-                                    tooltipElement.textContent = \`Rating: \${rating !== undefined ? rating : 'N/A'} | Class name: \${class_name}\`;
-                                    tooltipElement.style.position = 'absolute';
-                                    tooltipElement.style.zIndex = 1000;
-                                    tooltipElement.style.backgroundColor = 'white';
-                                    tooltipElement.style.borderRadius = '3px';
-                                    tooltipElement.style.padding = '5px';
-                                    tooltipElement.style.display = 'none';
+                                    // Create a popup element
+                                    const popupElement = document.createElement('div');
+                                    popupElement.textContent = \`Rating: \${rating !== undefined ? rating : 'N/A'} | Class name: \${class_name}\`;
+                                    popupElement.style.position = 'absolute';
+                                    popupElement.style.zIndex = 1000;
+                                    popupElement.style.backgroundColor = 'white';
+                                    popupElement.style.borderRadius = '3px';
+                                    popupElement.style.padding = '5px';
+                                    popupElement.style.display = 'none';
 
-                                    // Append the tooltip element to the body
-                                    document.body.appendChild(tooltipElement);
+                                    // Append the popup element to the body
+                                    document.body.appendChild(popupElement);
 
-                                    // Add event listeners to show/hide the tooltip on hover
+                                    // Add event listeners to show/hide the popup on hover
                                     ratingSpan.addEventListener('mouseover', function(event) {
-                                        tooltipElement.style.display = 'block';
-                                        tooltipElement.style.left = event.clientX + 'px';
-                                        tooltipElement.style.top = event.clientY + 'px';
+                                        popupElement.style.display = 'block';
+                                        popupElement.style.left = event.clientX + 'px';
+                                        popupElement.style.top = event.clientY + 'px';
                                     });
                                     ratingSpan.addEventListener('mouseout', function() {
-                                        tooltipElement.style.display = 'none';
+                                        popupElement.style.display = 'none';
                                     });
                                 }
                             }
@@ -84,7 +84,6 @@ function runScript() {
             `});
     });
 }
-
 
 chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
     if (details.url && details.url.includes('cmsweb.pscs.calpoly.edu')) {
